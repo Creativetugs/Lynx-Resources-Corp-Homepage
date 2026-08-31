@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lynx Resources Corp. | Mineral Exploration — Newfoundland & Labrador</title>
+    <!-- Google Fonts: Playfair Display for Serif headlines & Inter for Sans Body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        lynx: {
+                            dark: '#291f17',       /* Deep Charcoal / Near-Black */
+                            accent: '#5e4837',     /* Warm Dark Brown */
+                            cream: '#f0ede2',      /* Ivory / Warm Cream */
+                            border: '#e2ded4',     /* Light Gray Border */
+                            muted: '#6b635b',      /* Muted Warm Body Text */
+                            lightBg: '#fbf9f5'     /* Very subtle warm tint */
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'Georgia', 'serif'],
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #291f17;
+            background-color: #ffffff;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .font-serif-heading {
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+        
+        /* Custom subtle scrollbars */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f0ede2;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #5e4837;
+            border-radius: 4px;
+        }
+
+        .img-zoom {
+            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .img-container:hover .img-zoom {
+            transform: scale(1.03);
+        }
+    </style>
+</head>
+<body class="bg-white text-lynx-dark antialiased selection:bg-lynx-cream selection:text-lynx-dark">
+
+    <!-- 01 — NAVIGATION -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-lynx-border transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo Section -->
+            <a href="#" class="flex items-center space-x-3 group">
+                <img 
+                    src="https://lynxresourcescorp.com/wp-content/uploads/2025/10/lynx-logo-edited.jpg?w=300&h=200" 
+                    alt="Lynx Resources Corp. Logo" 
+                    class="h-12 w-auto object-contain transition-opacity duration-300 group-hover:opacity-90"
+                    onerror="this.onerror=null; this.src='https://placehold.co/300x200/291f17/f0ede2?text=LYNX+RESOURCES';"
+                />
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center space-x-8 text-xs font-semibold uppercase tracking-wider text-lynx-dark">
+                <a href="#property" class="hover:text-lynx-accent transition-colors py-2 border-b-2 border-transparent hover:border-lynx-accent">Property</a>
+                <a href="#about" class="hover:text-lynx-accent transition-colors py-2 border-b-2 border-transparent hover:border-lynx-accent">About</a>
+                <a href="#geology" class="hover:text-lynx-accent transition-colors py-2 border-b-2 border-transparent hover:border-lynx-accent">Geology</a>
+                <a href="#team" class="hover:text-lynx-accent transition-colors py-2 border-b-2 border-transparent hover:border-lynx-accent">Team</a>
+                <a href="#news" class="hover:text-lynx-accent transition-colors py-2 border-b-2 border-transparent hover:border-lynx-accent">News & Updates</a>
+                <a href="#contact" class="hover:text-lynx-accent transition-colors py-2 border-b-2 border-transparent hover:border-lynx-accent">Contact</a>
+            </nav>
+
+            <!-- Right CTA Button -->
+            <div class="hidden md:flex items-center">
+                <button onclick="openInvestorModal()" class="inline-flex items-center justify-center px-4 py-2.5 border border-lynx-dark text-xs font-semibold tracking-wider text-lynx-cream bg-lynx-dark hover:bg-lynx-accent hover:border-lynx-accent transition-all duration-200 shadow-sm rounded-none">
+                    Investor Information <i data-lucide="arrow-right" class="w-3.5 h-3.5 ml-2"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <div class="flex md:hidden">
+                <button type="button" id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2 text-lynx-dark hover:text-lynx-accent focus:outline-none" aria-label="Toggle menu">
+                    <i data-lucide="menu" id="menu-icon-open" class="w-6 h-6"></i>
+                    <i data-lucide="x" id="menu-icon-close" class="w-6 h-6 hidden"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Navigation -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-lynx-border px-4 pt-4 pb-6 space-y-4">
+            <a href="#property" onclick="toggleMobileMenu()" class="block py-2 text-sm font-medium tracking-wide border-b border-lynx-cream">Property</a>
+            <a href="#about" onclick="toggleMobileMenu()" class="block py-2 text-sm font-medium tracking-wide border-b border-lynx-cream">About</a>
+            <a href="#geology" onclick="toggleMobileMenu()" class="block py-2 text-sm font-medium tracking-wide border-b border-lynx-cream">Geology</a>
+            <a href="#team" onclick="toggleMobileMenu()" class="block py-2 text-sm font-medium tracking-wide border-b border-lynx-cream">Team</a>
+            <a href="#news" onclick="toggleMobileMenu()" class="block py-2 text-sm font-medium tracking-wide border-b border-lynx-cream">News & Updates</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="block py-2 text-sm font-medium tracking-wide border-b border-lynx-cream">Contact</a>
+            <div class="pt-2">
+                <button onclick="openInvestorModal(); toggleMobileMenu();" class="w-full flex items-center justify-center px-4 py-3 border border-lynx-dark text-xs font-semibold tracking-wider text-lynx-cream bg-lynx-dark hover:bg-lynx-accent">
+                    Investor Information <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- 02 — HERO -->
+        <section class="relative bg-white pt-10 pb-16 lg:pt-14 lg:pb-20 border-b border-lynx-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+                    
+                    <!-- Left Column: Content -->
+                    <div class="lg:col-span-6 space-y-6">
+                        <div class="inline-flex items-center space-x-2 text-xs font-semibold tracking-widest text-lynx-accent uppercase">
+                            <span class="w-2 h-2 rounded-full bg-lynx-accent inline-block"></span>
+                            <span>MINERAL EXPLORATION • NEWFOUNDLAND & LABRADOR</span>
+                        </div>
+                        
+                        <h1 class="font-serif-heading text-4xl sm:text-5xl lg:text-6xl font-normal leading-tight text-lynx-dark tracking-tight">
+                            Eyes on Opportunity.<br/>
+                            <span class="italic font-light">Feet in Newfoundland.</span>
+                        </h1>
+                        
+                        <p class="text-base sm:text-lg text-lynx-muted max-w-xl font-normal leading-relaxed">
+                            Exploring the Turner’s Ridge Property — an early-stage lead-zinc-silver exploration project strategically situated in western Newfoundland and Labrador.
+                        </p>
+                        
+                        <div class="pt-2 flex flex-wrap items-center gap-4">
+                            <a href="#property-feature" class="inline-flex items-center justify-center px-6 py-3 border border-lynx-dark text-xs font-semibold tracking-widest text-lynx-cream bg-lynx-dark hover:bg-lynx-accent hover:border-lynx-accent transition-all duration-200">
+                                Explore Turner’s Ridge <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                            </a>
+                            <a href="#about" class="inline-flex items-center justify-center px-6 py-3 border border-lynx-border text-xs font-semibold tracking-widest text-lynx-dark bg-transparent hover:bg-lynx-cream transition-all duration-200">
+                                About Lynx
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Visual -->
+                    <div class="lg:col-span-6">
+                        <div class="relative img-container overflow-hidden border border-lynx-border bg-lynx-cream shadow-sm">
+                            <img 
+                                src="https://images.unsplash.com/photo-1541888946425-d0fbb186a5b7?auto=format&fit=crop&w=1200&q=80" 
+                                alt="Turner's Ridge Field Exploration Outcrop in Newfoundland" 
+                                class="w-full h-[380px] sm:h-[460px] object-cover img-zoom"
+                            />
+                            <!-- Image overlay label -->
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-lynx-dark/90 via-lynx-dark/50 to-transparent p-6 text-white">
+                                <span class="block text-xs font-bold tracking-widest text-lynx-cream uppercase">TURNER’S RIDGE PROPERTY</span>
+                                <span class="block text-xs text-stone-300 font-light mt-0.5">Western Newfoundland & Labrador</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 03 — PROPERTY SNAPSHOT -->
+        <section class="bg-lynx-cream/40 border-b border-lynx-border py-8">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between border-l-2 border-lynx-accent pl-4 mb-4 md:mb-6">
+                    <div>
+                        <h3 class="text-xs font-bold uppercase tracking-widest text-lynx-accent">Turner’s Ridge at a glance</h3>
+                    </div>
+                    <span class="text-xs text-lynx-muted font-normal mt-1 md:mt-0">Western Newfoundland & Labrador, Canada</span>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8 pt-2">
+                    <!-- Metric 1 -->
+                    <div class="border-t border-lynx-border pt-4">
+                        <div class="font-serif-heading text-3xl sm:text-4xl text-lynx-dark font-medium">225 ha</div>
+                        <div class="text-xs uppercase tracking-wider font-semibold text-lynx-muted mt-1">Property Area</div>
+                    </div>
+
+                    <!-- Metric 2 -->
+                    <div class="border-t border-lynx-border pt-4">
+                        <div class="font-serif-heading text-3xl sm:text-4xl text-lynx-dark font-medium">9</div>
+                        <div class="text-xs uppercase tracking-wider font-semibold text-lynx-muted mt-1">Mineral Claims</div>
+                    </div>
+
+                    <!-- Metric 3 -->
+                    <div class="border-t border-lynx-border pt-4">
+                        <div class="font-serif-heading text-3xl sm:text-4xl text-lynx-dark font-medium">2</div>
+                        <div class="text-xs uppercase tracking-wider font-semibold text-lynx-muted mt-1">Exploration Licences</div>
+                    </div>
+
+                    <!-- Metric 4 -->
+                    <div class="border-t border-lynx-border pt-4">
+                        <div class="font-serif-heading text-3xl sm:text-4xl text-lynx-dark font-medium">Lead • Zinc • Silver</div>
+                        <div class="text-xs uppercase tracking-wider font-semibold text-lynx-muted mt-1">Mineralization</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 04 — ABOUT LYNX -->
+        <section id="about" class="py-16 sm:py-24 bg-white border-b border-lynx-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+                    
+                    <!-- Left: Text Column (50%) -->
+                    <div class="lg:col-span-6 space-y-6">
+                        <div>
+                            <span class="text-xs font-bold tracking-widest uppercase text-lynx-accent">ABOUT LYNX</span>
+                            <h2 class="font-serif-heading text-3xl sm:text-4xl text-lynx-dark font-normal mt-2 leading-tight">
+                                Focused on exploration.<br/>
+                                <span class="italic font-light">Grounded in opportunity.</span>
+                            </h2>
+                        </div>
+
+                        <div class="space-y-4 text-sm sm:text-base text-lynx-muted leading-relaxed font-normal">
+                            <p>
+                                Lynx Resources Corp. is a mineral resource company focused on the acquisition and exploration of mineral resource properties.
+                            </p>
+                            <p>
+                                Its principal project is the <strong class="text-lynx-dark font-medium">Turner’s Ridge Property</strong>, located in western Newfoundland and Labrador, Canada. Lynx holds an option to acquire a 100% undivided right, title and interest in the Property.
+                            </p>
+                            <p>
+                                Our focus is on advancing exploration through systematic field work, geological evaluation and the identification of opportunities within prospective mineral environments.
+                            </p>
+                        </div>
+
+                        <div class="pt-4">
+                            <button onclick="scrollToSection('property-feature')" class="inline-flex items-center text-xs font-semibold tracking-widest uppercase text-lynx-dark border-b-2 border-lynx-dark pb-1 hover:text-lynx-accent hover:border-lynx-accent transition-all">
+                                Learn About Lynx <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Right: Geological Photography -->
+                    <div class="lg:col-span-6">
+                        <div class="relative img-container overflow-hidden border border-lynx-border bg-lynx-cream">
+                            <img 
+                                src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=1000&q=80" 
+                                alt="Geological rock sample core inspection" 
+                                class="w-full h-[400px] object-cover img-zoom"
+                            />
+                            <div class="p-4 bg-lynx-cream/80 border-t border-lynx-border text-xs text-lynx-dark flex justify-between items-center">
+                                <span class="font-medium uppercase tracking-wider">Field Exploration Work</span>
+                                <span class="text-lynx-muted">Geological Rock Sample Analysis</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 05 — TURNER'S RIDGE FEATURE -->
+        <section id="property-feature" class="py-16 sm:py-24 bg-lynx-cream border-b border-lynx-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+                    
+                    <!-- Left Visual -->
+                    <div class="lg:col-span-6 order-2 lg:order-1">
+                        <div class="relative img-container overflow-hidden border border-lynx-border bg-white shadow-sm">
+                            <img 
+                                src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80" 
+                                alt="Western Newfoundland Landscape Geology" 
+                                class="w-full h-[420px] object-cover img-zoom"
+                            />
+                            <div class="absolute top-4 left-4 bg-lynx-dark text-lynx-cream px-3 py-1.5 text-[10px] font-bold tracking-widest uppercase">
+                                WESTERN NEWFOUNDLAND
+                            </div>
+                            <div class="p-4 bg-white border-t border-lynx-border flex justify-between items-center text-xs">
+                                <span class="font-semibold text-lynx-dark uppercase tracking-wider">NEWFOUNDLAND & LABRADOR, CANADA</span>
+                                <span class="text-lynx-muted">Highway 420 Access</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Text Column -->
+                    <div class="lg:col-span-6 order-1 lg:order-2 space-y-6">
+                        <div>
+                            <span class="text-xs font-bold tracking-widest uppercase text-lynx-accent">OUR PRINCIPAL PROJECT</span>
+                            <h2 class="font-serif-heading text-3xl sm:text-4xl text-lynx-dark font-normal mt-2 leading-tight">
+                                Turner’s Ridge Property
+                            </h2>
+                            <p class="text-sm font-semibold text-lynx-accent uppercase tracking-wider mt-2">
+                                A 225-hectare early-stage exploration property in western Newfoundland and Labrador.
+                            </p>
+                        </div>
+
+                        <div class="space-y-4 text-sm sm:text-base text-lynx-muted leading-relaxed font-normal">
+                            <p>
+                                Turner’s Ridge is comprised of two map-staked mineral exploration licences containing nine mineral claims covering approximately 225 hectares.
+                            </p>
+                            <p>
+                                Historical and recent exploration has identified lead-zinc-silver mineralization associated with brecciated dolostone, with Lynx completing soil sampling, prospecting and channel sampling in 2023.
+                            </p>
+                        </div>
+
+                        <div class="pt-4">
+                            <a href="#exploration-story" class="inline-flex items-center justify-center px-6 py-3 border border-lynx-dark text-xs font-semibold tracking-widest text-lynx-cream bg-lynx-dark hover:bg-lynx-accent transition-all duration-200">
+                                Explore the Property <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 06 — EXPLORATION STORY -->
+        <section id="exploration-story" class="py-16 sm:py-24 bg-white border-b border-lynx-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="max-w-3xl mb-12 space-y-3">
+                    <span class="text-xs font-bold tracking-widest uppercase text-lynx-accent">EXPLORATION</span>
+                    <h2 class="font-serif-heading text-3xl sm:text-4xl text-lynx-dark font-normal leading-tight">
+                        Building on a history of exploration.
+                    </h2>
+                    <p class="text-sm sm:text-base text-lynx-muted leading-relaxed">
+                        Turner’s Ridge has been the subject of historical and recent exploration, providing Lynx with a geological foundation for continued evaluation of the Property. Lynx's 2023 exploration program included soil sampling, prospecting and channel sampling, while historical operators previously completed drilling on and around the Property.
+                    </p>
+                </div>
+
+                <!-- 3 Feature Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <!-- Card 01 -->
+                    <div class="p-8 border border-lynx-border bg-lynx-lightBg hover:border-lynx-accent transition-all duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="font-serif-heading text-4xl text-lynx-accent font-light mb-6">01</div>
+                            <h3 class="font-serif-heading text-xl text-lynx-dark font-medium mb-3">Historical Exploration</h3>
+                            <p class="text-xs sm:text-sm text-lynx-muted leading-relaxed">
+                                Previous operators conducted exploration and drilling on and around the Turner’s Ridge area, identifying initial mineralization zones.
+                            </p>
+                        </div>
+                        <div class="mt-8 pt-4 border-t border-lynx-border/60 text-[11px] font-semibold text-lynx-accent uppercase tracking-wider">
+                            Historical Dataset Baseline
+                        </div>
+                    </div>
+
+                    <!-- Card 02 -->
+                    <div class="p-8 border border-lynx-border bg-lynx-lightBg hover:border-lynx-accent transition-all duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="font-serif-heading text-4xl text-lynx-accent font-light mb-6">02</div>
+                            <h3 class="font-serif-heading text-xl text-lynx-dark font-medium mb-3">2023 Field Program</h3>
+                            <p class="text-xs sm:text-sm text-lynx-muted leading-relaxed">
+                                Lynx completed systematic prospecting, grid soil sampling, and channel sampling across the Property to verify mineralization trends.
+                            </p>
+                        </div>
+                        <div class="mt-8 pt-4 border-t border-lynx-border/60 text-[11px] font-semibold text-lynx-accent uppercase tracking-wider">
+                            Lynx Exploration Milestone
+                        </div>
+                    </div>
+
+                    <!-- Card 03 -->
+                    <div class="p-8 border border-lynx-border bg-lynx-lightBg hover:border-lynx-accent transition-all duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="font-serif-heading text-4xl text-lynx-accent font-light mb-6">03</div>
+                            <h3 class="font-serif-heading text-xl text-lynx-dark font-medium mb-3">Continued Evaluation</h3>
+                            <p class="text-xs sm:text-sm text-lynx-muted leading-relaxed">
+                                Further exploration work is required to determine the significance, structural geometry, and full potential of the identified mineralization.
+                            </p>
+                        </div>
+                        <div class="mt-8 pt-4 border-t border-lynx-border/60 text-[11px] font-semibold text-lynx-accent uppercase tracking-wider">
+                            Target Refinement Phase
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 07 — GEOLOGY / MINERALIZATION -->
+        <section id="geology" class="py-16 sm:py-24 bg-white border-b border-lynx-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+                    
+                    <!-- Left Column: Technical Narrative -->
+                    <div class="lg:col-span-6 space-y-6">
+                        <div>
+                            <span class="text-xs font-bold tracking-widest uppercase text-lynx-accent">GEOLOGICAL SETTING</span>
+                            <h2 class="font-serif-heading text-3xl sm:text-4xl text-lynx-dark font-normal mt-2 leading-tight">
+                                A lead-zinc-silver system in western Newfoundland.
+                            </h2>
+                        </div>
+
+                        <div class="space-y-4 text-sm sm:text-base text-lynx-muted leading-relaxed font-normal">
+                            <p>
+                                Turner’s Ridge hosts coarse to fine-grained galena with calcite, barite, pyrite and sphalerite within intensely brecciated Silurian dolostone.
+                            </p>
+                            <p>
+                                The mineralization represents a <strong class="text-lynx-dark font-medium">Mississippi Valley-Type (MVT) lead-zinc-silver system</strong> — a stratabound, epigenetic and carbonate-hosted deposit type known worldwide for structural consistency.
+                            </p>
+                        </div>
+
+                        <!-- Technical Matrix Box -->
+                        <div class="p-6 bg-lynx-cream/60 border border-lynx-border space-y-3">
+                            <h4 class="text-xs font-bold tracking-widest uppercase text-lynx-dark">Deposit Classification Summary</h4>
+                            <div class="grid grid-cols-2 gap-4 text-xs pt-1">
+                                <div>
+                                    <span class="text-lynx-muted block">System Type:</span>
+                                    <span class="font-semibold text-lynx-dark">Mississippi Valley-Type (MVT)</span>
+                                </div>
+                                <div>
+                                    <span class="text-lynx-muted block">Host Geology:</span>
+                                    <span class="font-semibold text-lynx-dark">Brecciated Silurian Dolostone</span>
+                                </div>
+                                <div>
+                                    <span class="text-lynx-muted block">Primary Minerals:</span>
+                                    <span class="font-semibold text-lynx-dark">Galena, Sphalerite, Pyrite</span>
+                                </div>
+                                <div>
+                                    <span class="text-lynx-muted block">Gangue Minerals:</span>
+                                    <span class="font-semibold text-lynx-dark">Calcite, Barite</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Diagram Visual -->
+                    <div class="lg:col-span-6">
+                        <div class="border border-lynx-border bg-white p-6 shadow-sm space-y-4">
+                            <!-- SVG Geological Stratigraphy Illustration -->
+                            <div class="bg-lynx-lightBg border border-lynx-border p-6 flex flex-col items-center justify-center min-h-[300px] text-center">
+                                <svg class="w-full h-48 text-lynx-dark" viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- Stratigraphic Layers Diagram -->
+                                    <rect x="20" y="20" width="360" height="35" fill="#e2ded4" stroke="#291f17" stroke-width="1.5" />
+                                    <text x="35" y="42" fill="#291f17" font-size="11" font-family="sans-serif" font-weight="600">Overburden & Surface Till</text>
+                                    
+                                    <rect x="20" y="55" width="360" height="55" fill="#f0ede2" stroke="#291f17" stroke-width="1.5" />
+                                    <path d="M 40 70 L 100 95 M 120 65 L 180 90 M 240 75 L 300 100" stroke="#5e4837" stroke-width="2" stroke-dasharray="4,4"/>
+                                    <text x="35" y="85" fill="#291f17" font-size="11" font-family="sans-serif" font-weight="700">Silurian Dolostone (Brecciated Unit)</text>
+
+                                    <!-- Breccia Mineralization Fault Zone -->
+                                    <path d="M 160 110 L 220 170" stroke="#291f17" stroke-width="3" />
+                                    <circle cx="185" cy="135" r="14" fill="#5e4837" fill-opacity="0.3" stroke="#5e4837" stroke-width="1.5"/>
+                                    <text x="210" y="140" fill="#5e4837" font-size="10" font-family="sans-serif" font-weight="700">Galena + Sphalerite Zone</text>
+                                    
+                                    <rect x="20" y="110" width="360" height="65" fill="#ffffff" stroke="#291f17" stroke-width="1.5" />
+                                    <text x="35" y="145" fill="#6b635b" font-size="11" font-family="sans-serif">Carbonate Basal Sequence</text>
+                                </svg>
+                                <p class="text-xs text-lynx-muted italic mt-2">Conceptual Schematic: Carbonate-Hosted MVT Structural Setting</p>
+                            </div>
+
+                            <div class="text-center pt-2">
+                                <div class="text-xs font-bold tracking-widest uppercase text-lynx-dark">Mississippi Valley-Type (MVT)</div>
+                                <div class="text-xs text-lynx-accent font-semibold mt-0.5">Lead • Zinc • Silver • Barite</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 08 — PROPERTY HIGHLIGHTS -->
+        <section class="py-16 sm:py-24 bg-lynx-cream/50 border-b border-lynx-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-2xl mx-auto mb-14 space-y-2">
+                    <span class="text-xs font-bold tracking-widest uppercase text-lynx-accent">WHY TURNER’S RIDGE</span>
+                    <h2 class="font-serif-heading text-3xl sm:text-4xl text-lynx-dark font-normal">
+                        A property with a foundation for further exploration.
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    
+                    <!-- Highlight 1 -->
+                    <div class="bg-white p-6 border border-lynx-border hover:shadow-md transition-all duration-200">
+                        <div class="w-8 h-8 rounded-none bg-lynx-cream flex items-center justify-center text-lynx-dark mb-4">
+                            <i data-lucide="layers" class="w-4 h-4"></i>
+                        </div>
+                        <h3 class="font-serif-heading text-lg font-medium text-lynx-dark mb-2">Prospective Geology</h3>
+                        <p class="text-xs text-lynx-muted leading-relaxed">
+                            Lead-zinc-silver mineralization associated with brecciated dolostone targets.
+                        </p>
+                    </div>
+
+                    <!-- Highlight 2 -->
+                    <div class="bg-white p-6 border border-lynx-border hover:shadow-md transition-all duration-200">
+                        <div class="w-8 h-8 rounded-none bg-lynx-cream flex items-center justify-center text-lynx-dark mb-4">
+                            <i data-lucide="history" class="w-4 h-4"></i>
+                        </div>
+                        <h3 class="font-serif-heading text-lg font-medium text-lynx-dark mb-2">Exploration History</h3>
+                        <p class="text-xs text-lynx-muted leading-relaxed">
+                            The Property and surrounding area have been explored by historical operators with recorded data.
+                        </p>
+                    </div>
+
+                    <!-- Highlight 3 -->
+                    <div class="bg-white p-6 border border-lynx-border hover:shadow-md transition-all duration-200">
+                        <div class="w-8 h-8 rounded-none bg-lynx-cream flex items-center justify-center text-lynx-dark mb-4">
+                            <i data-lucide="pickaxe" class="w-4 h-4"></i>
+                        </div>
+                        <h3 class="font-serif-heading text-lg font-medium text-lynx-dark mb-2">Recent Field Work</h3>
+                        <p class="text-xs text-lynx-muted leading-relaxed">
+                            Lynx completed prospecting, soil and channel sampling in 2023 with focused technical execution.
+                        </p>
+                    </div>
+
+                    <!-- Highlight 4 -->
+                    <div class="bg-white p-6 border border-lynx-border hover:shadow-md transition-all duration-200">
+                        <div class="w-8 h-8 rounded-none bg-lynx-cream flex items-center justify-center text-lynx-dark mb-4">
+                            <i data-lucide="map-pin" class="w-4 h-4"></i>
+                        </div>
+                        <h3 class="font-serif-heading text-lg font-medium text-lynx-dark mb-2">Strategic Location</h3>
+                        <p class="text-xs text-lynx-muted leading-relaxed">
+                            Located in western Newfoundland and Labrador with reliable access along Highway 420.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 09 — PROPERTY MAP / GALLERY -->
+        <section class="py-16 sm:py-24 bg-white border-b border-lynx-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-6 border-b border-lynx-border gap-4">
+                    <div>
+                        <span class="text-xs font-bold tracking-widest uppercase text-lynx-accent">THE PROPERTY</span>
+                        <h2 class="font-serif-heading text-3xl sm:text-4xl text-lynx-dark font-normal mt-1">
+                            Explore Turner’s Ridge
+                        </h2>
+                    </div>
+
+                    <!-- Gallery Category Filter Tabs -->
+                    <div class="flex flex-wrap gap-2 text-xs font-semibold uppercase tracking-wider">
+                        <button onclick="filterGallery('all')" class="gallery-tab active px-3 py-1.5 border border-lynx-dark bg-lynx-dark text-lynx-cream transition-all">All</button>
+                        <button onclick="filterGallery('location')" class="gallery-tab px-3 py-1.5 border border-lynx-border bg-white text-lynx-dark hover:bg-lynx-cream transition-all">Location</button>
+                        <button onclick="filterGallery('geology')" class="gallery-tab px-3 py-1.5 border border-lynx-border bg-white text-lynx-dark hover:bg-lynx-cream transition-all">Geology</button>
+                        <button onclick="filterGallery('sampling')" class="gallery-tab px-3 py-1.5 border border-lynx-border bg-white text-lynx-dark hover:bg-lynx-cream transition-all">Sampling</button>
+                    </div>
+                </div>
+
+                <!-- Clean Gallery Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="gallery-grid">
+                    
+                    <!-- Item 1: Location -->
+                    <div class="gallery-item location group cursor-pointer img-container border border-lynx-border overflow-hidden bg-lynx-cream" onclick="openLightbox('Property Location Map', 'Western Newfoundland infrastructure & highway access', 'https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1000&q=80')">
+                        <div class="relative h-60 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=800&q=80" alt="Property Location Map" class="w-full h-full object-cover img-zoom">
+                            <div class="absolute inset-0 bg-lynx-dark/20 group-hover:bg-lynx-dark/0 transition-all"></div>
+                        </div>
+                        <div class="p-4 bg-white border-t border-lynx-border flex justify-between items-center">
+                            <span class="text-xs font-semibold text-lynx-dark uppercase tracking-wider">Property Location</span>
+                            <i data-lucide="maximize-2" class="w-3.5 h-3.5 text-lynx-accent"></i>
+                        </div>
+                    </div>
+
+                    <!-- Item 2: Geology -->
+                    <div class="gallery-item geology group cursor-pointer img-container border border-lynx-border overflow-hidden bg-lynx-cream" onclick="openLightbox('Regional Geology', 'Silurian Dolostone Breccia map overlay', 'https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=1000&q=80')">
+                        <div class="relative h-60 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=800&q=80" alt="Regional Geology" class="w-full h-full object-cover img-zoom">
+                            <div class="absolute inset-0 bg-lynx-dark/20 group-hover:bg-lynx-dark/0 transition-all"></div>
+                        </div>
+                        <div class="p-4 bg-white border-t border-lynx-border flex justify-between items-center">
+                            <span class="text-xs font-semibold text-lynx-dark uppercase tracking-wider">Regional Geology</span>
+                            <i data-lucide="maximize-2" class="w-3.5 h-3.5 text-lynx-accent"></i>
+                        </div>
+                    </div>
+
+                    <!-- Item 3: Mineralization -->
+                    <div class="gallery-item geology group cursor-pointer img-container border border-lynx-border overflow-hidden bg-lynx-cream" onclick="openLightbox('Mineralization', 'Galena and sphalerite specimen in dolostone matrix', 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1000&q=80')">
+                        <div class="relative h-60 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" alt="Mineralization" class="w-full h-full object-cover img-zoom">
+                            <div class="absolute inset-0 bg-lynx-dark/20 group-hover:bg-lynx-dark/0 transition-all"></div>
+                        </div>
+                        <div class="p-4 bg-white border-t border-lynx-border flex justify-between items-center">
+                            <span class="text-xs font-semibold text-lynx-dark uppercase tracking-wider">Mineralization</span>
+                            <i data-lucide="maximize-2" class="w-3.5 h-3.5 text-lynx-accent"></i>
+                        </div>
+                    </div>
+
+                    <!-- Item 4: Sampling -->
+                    <div class="gallery-item sampling group cursor-pointer img-container border border-lynx-border overflow-hidden bg-lynx-cream" onclick="openLightbox('Sampling Program', '2023 Soil and channel sampling grid points', 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=1000&q=80')">
+                        <div class="relative h-60 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=800&q=80" alt="Sampling Program" class="w-full h-full object-cover img-zoom">
+                            <div class="absolute inset-0 bg-lynx-dark/20 group-hover:bg-lynx-dark/0 transition-all"></div>
+                        </div>
+                        <div class="p-4 bg-white border-t border-lynx-border flex justify-between items-center">
+                            <span class="text-xs font-semibold text-lynx-dark uppercase tracking-wider">Sampling</span>
+                            <i data-lucide="maximize-2" class="w-3.5 h-3.5 text-lynx-accent"></i>
+                        </div>
+                    </div>
+
+                    <!-- Item 5: Historical Drilling -->
+                    <div class="gallery-item location group cursor-pointer img-container border border-lynx-border overflow-hidden bg-lynx-cream" onclick="openLightbox('Historical Drilling', 'Previous operator collar location map', 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1000&q=80')">
+                        <div class="relative h-60 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=800&q=80" alt="Historical Drilling" class="w-full h-full object-cover img-zoom">
+                            <div class="absolute inset-0 bg-lynx-dark/20 group-hover:bg-lynx-dark/0 transition-all"></div>
+                        </div>
+                        <div class="p-4 bg-white border-t border-lynx-border flex justify-between items-center">
+                            <span class="text-xs font-semibold text-lynx-dark uppercase tracking-wider">Historical Drilling</span>
+                            <i data-lucide="maximize-2" class="w-3.5 h-3.5 text-lynx-accent"></i>
+                        </div>
+                    </div>
+
+                    <!-- Item 6: Field Exploration -->
+                    <div class="gallery-item sampling group cursor-pointer img-container border border-lynx-border overflow-hidden bg-lynx-cream" onclick="openLightbox('Field Exploration', 'Geological field evaluation on Turner’s Ridge Property', 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1000&q=80')">
+                        <div class="relative h-60 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80" alt="Field Exploration" class="w-full h-full object-cover img-zoom">
+                            <div class="absolute inset-0 bg-lynx-dark/20 group-hover:bg-lynx-dark/0 transition-all"></div>
+                        </div>
+                        <div class="p-4 bg-white border-t border-lynx-border flex justify-between items-center">
+                            <span class="text-xs font-semibold text-lynx-dark uppercase tracking-wider">Field Exploration</span>
+                            <i data-lucide="maximize-2" class="w-3.5 h-3.5 text-lynx-accent"></i>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="mt-10 text-center">
+                    <button onclick="openInvestorModal()" class="inline-flex items-center justify-center px-6 py-3 border border-lynx-dark text-xs font-semibold tracking-widest text-lynx-dark bg-transparent hover:bg-lynx-cream transition-all duration-200">
+                        View Turner’s Ridge Property Data <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 10 — TEAM -->
+        <section id="team" class="py-16 sm:py-24 bg-lynx-cream/40 border-b border-lynx-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="max-w-3xl mb-12 space-y-2">
+                    <span class="text-xs font-bold tracking-widest uppercase text-lynx-accent">LEADERSHIP</span>
+                    <h2 class="font-serif-heading text-3xl sm:text-4xl text-lynx-dark font-normal">
+                        Experience behind the exploration.
+                    </h2>
+                    <p class="text-sm text-lynx-muted leading-relaxed">
+                        Lynx brings together experience across capital markets, corporate finance, public companies and mineral exploration.
+                    </p>
+                </div>
+
+                <!-- 4 Team Cards Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    
+                    <!-- Team 1 -->
+                    <div class="bg-white border border-lynx-border p-6 flex flex-col justify-between hover:border-lynx-accent transition-all">
+                        <div>
+                            <div class="w-14 h-14 bg-lynx-cream border border-lynx-border flex items-center justify-center font-serif-heading text-xl font-bold text-lynx-dark mb-4">
+                                KZ
+                            </div>
+                            <h3 class="font-serif-heading text-xl text-lynx-dark font-medium">Kevin Zhou</h3>
+                            <div class="text-[11px] font-semibold text-lynx-accent uppercase tracking-wider mt-1 mb-3">
+                                President, CEO, Corporate Secretary & Director
+                            </div>
+                            <p class="text-xs text-lynx-muted leading-relaxed">
+                                Capital markets professional with experience in junior mining, corporate finance and venture capital.
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-lynx-border">
+                            <button onclick="openTeamBio('Kevin Zhou', 'President, CEO, Corporate Secretary & Director', 'Capital markets professional with extensive experience in junior mining, corporate finance, public listings, and venture capital across Canadian capital markets.')" class="text-xs font-semibold text-lynx-dark hover:text-lynx-accent inline-flex items-center">
+                                View profile <i data-lucide="chevron-right" class="w-3.5 h-3.5 ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Team 2 -->
+                    <div class="bg-white border border-lynx-border p-6 flex flex-col justify-between hover:border-lynx-accent transition-all">
+                        <div>
+                            <div class="w-14 h-14 bg-lynx-cream border border-lynx-border flex items-center justify-center font-serif-heading text-xl font-bold text-lynx-dark mb-4">
+                                KL
+                            </div>
+                            <h3 class="font-serif-heading text-xl text-lynx-dark font-medium">Keith Li</h3>
+                            <div class="text-[11px] font-semibold text-lynx-accent uppercase tracking-wider mt-1 mb-3">
+                                Chief Financial Officer (CFO)
+                            </div>
+                            <p class="text-xs text-lynx-muted leading-relaxed">
+                                CPA (CA) with 15+ years of experience spanning corporate accounting, finance, equity markets and public company administration.
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-lynx-border">
+                            <button onclick="openTeamBio('Keith Li', 'CFO', 'CPA (CA) with over 15 years of comprehensive experience spanning corporate accounting, regulatory financial reporting, equity markets, and public company compliance administration.')" class="text-xs font-semibold text-lynx-dark hover:text-lynx-accent inline-flex items-center">
+                                View profile <i data-lucide="chevron-right" class="w-3.5 h-3.5 ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Team 3 -->
+                    <div class="bg-white border border-lynx-border p-6 flex flex-col justify-between hover:border-lynx-accent transition-all">
+                        <div>
+                            <div class="w-14 h-14 bg-lynx-cream border border-lynx-border flex items-center justify-center font-serif-heading text-xl font-bold text-lynx-dark mb-4">
+                                BG
+                            </div>
+                            <h3 class="font-serif-heading text-xl text-lynx-dark font-medium">Barry Greene</h3>
+                            <div class="text-[11px] font-semibold text-lynx-accent uppercase tracking-wider mt-1 mb-3">
+                                Director
+                            </div>
+                            <p class="text-xs text-lynx-muted leading-relaxed">
+                                Entrepreneur and geoscientist with 30+ years of experience across Canada, the U.S. and international resource markets.
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-lynx-border">
+                            <button onclick="openTeamBio('Barry Greene', 'Director', 'Entrepreneur and professional geoscientist with 30+ years of mineral exploration, property development, and resource discovery experience across Canada, the US, and international markets.')" class="text-xs font-semibold text-lynx-dark hover:text-lynx-accent inline-flex items-center">
+                                View profile <i data-lucide="chevron-right" class="w-3.5 h-3.5 ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Team 4 -->
+                    <div class="bg-white border border-lynx-border p-6 flex flex-col justify-between hover:border-lynx-accent transition-all">
+                        <div>
+                            <div class="w-14 h-14 bg-lynx-cream border border-lynx-border flex items-center justify-center font-serif-heading text-xl font-bold text-lynx-dark mb-4">
+                                ES
+                            </div>
+                            <h3 class="font-serif-heading text-xl text-lynx-dark font-medium">Ethan Spence</h3>
+                            <div class="text-[11px] font-semibold text-lynx-accent uppercase tracking-wider mt-1 mb-3">
+                                Director
+                            </div>
+                            <p class="text-xs text-lynx-muted leading-relaxed">
+                                Capital markets advisor experienced in corporate finance, public company advisory and transaction execution.
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-lynx-border">
+                            <button onclick="openTeamBio('Ethan Spence', 'Director', 'Capital markets advisor specializing in strategic corporate finance, public venture company governance, M&A structuring, and corporate transaction execution.')" class="text-xs font-semibold text-lynx-dark hover:text-lynx-accent inline-flex items-center">
+                                View profile <i data-lucide="chevron-right" class="w-3.5 h-3.5 ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 11 — NEWS & UPDATES -->
+        <section id="news" class="py-16 sm:py-24 bg-white border-b border-lynx-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-6 border-b border-lynx-border gap-4">
+                    <div>
+                        <span class="text-xs font-bold tracking-widest uppercase text-lynx-accent">STAY INFORMED</span>
+                        <h2 class="font-serif-heading text-3xl sm:text-4xl text-lynx-dark font-normal mt-1">
+                            News & Updates
+                        </h2>
+                        <p class="text-xs text-lynx-muted mt-1">
+                            Follow Lynx Resources Corp. for company announcements, exploration updates and developments from Turner’s Ridge.
+                        </p>
+                    </div>
+                    <div>
+                        <button onclick="openNewsletterModal()" class="inline-flex items-center px-4 py-2 border border-lynx-border text-xs font-semibold tracking-wider text-lynx-dark hover:bg-lynx-cream transition-all">
+                            <i data-lucide="mail" class="w-3.5 h-3.5 mr-2"></i> Subscribe to News
+                        </button>
+                    </div>
+                </div>
+
+                <!-- News Items Table / List -->
+                <div class="divide-y divide-lynx-border border-b border-lynx-border">
+                    
+                    <!-- News item 1 -->
+                    <div class="py-6 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-lynx-lightBg px-4 transition-colors">
+                        <div class="space-y-1">
+                            <div class="flex items-center space-x-3">
+                                <span class="text-xs font-semibold text-lynx-accent uppercase tracking-wider">Exploration</span>
+                                <span class="text-xs text-lynx-muted">• October 2023</span>
+                            </div>
+                            <h3 class="font-serif-heading text-lg font-medium text-lynx-dark hover:text-lynx-accent transition-colors">
+                                Lynx Resources Completes 2023 Field Exploration Program at Turner’s Ridge Property
+                            </h3>
+                            <p class="text-xs text-lynx-muted max-w-3xl">
+                                Sampling program included surface prospecting, soil grids, and rock channel assays across prospective dolostone units.
+                            </p>
+                        </div>
+                        <button onclick="openNewsDetail('Lynx Resources Completes 2023 Field Exploration Program at Turner’s Ridge Property', 'October 2023', 'Lynx Resources Corp. has successfully concluded its 2023 exploration campaign on the Turner’s Ridge Property located in western Newfoundland and Labrador. Work performed included targeted soil geochemistry, rock sampling, and detailed geological mapping to refine lead-zinc-silver target models.')" class="inline-flex items-center text-xs font-semibold text-lynx-dark hover:text-lynx-accent whitespace-nowrap">
+                            Read Release <i data-lucide="arrow-right" class="w-3.5 h-3.5 ml-1"></i>
+                        </button>
+                    </div>
+
+                    <!-- News item 2 -->
+                    <div class="py-6 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-lynx-lightBg px-4 transition-colors">
+                        <div class="space-y-1">
+                            <div class="flex items-center space-x-3">
+                                <span class="text-xs font-semibold text-lynx-accent uppercase tracking-wider">Corporate</span>
+                                <span class="text-xs text-lynx-muted">• May 2023</span>
+                            </div>
+                            <h3 class="font-serif-heading text-lg font-medium text-lynx-dark hover:text-lynx-accent transition-colors">
+                                Lynx Resources Advances Option Agreement for 100% Undivided Interest in Turner’s Ridge
+                            </h3>
+                            <p class="text-xs text-lynx-muted max-w-3xl">
+                                Corporate agreement maintains option rights over two exploration licences comprising nine mineral claims in Newfoundland.
+                            </p>
+                        </div>
+                        <button onclick="openNewsDetail('Lynx Resources Advances Option Agreement for 100% Undivided Interest in Turner’s Ridge', 'May 2023', 'Lynx Resources Corp. continues to satisfy conditions under its principal option agreement securing the exclusive right to earn a 100% undivided right, title, and interest in the 225-hectare Turner’s Ridge Property.')" class="inline-flex items-center text-xs font-semibold text-lynx-dark hover:text-lynx-accent whitespace-nowrap">
+                            Read Release <i data-lucide="arrow-right" class="w-3.5 h-3.5 ml-1"></i>
+                        </button>
+                    </div>
+
+                </div>
+
+                <div class="mt-8 text-center">
+                    <button onclick="openNewsDetail('All Corporate News', 'Archive', 'All regulatory disclosures, press releases, and financial filings can be accessed through SEDAR+ or by contacting investor relations.')" class="inline-flex items-center text-xs font-semibold tracking-widest uppercase text-lynx-dark border-b-2 border-lynx-dark pb-1 hover:text-lynx-accent hover:border-lynx-accent transition-all">
+                        View All News Releases <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 12 — INVESTOR CTA -->
+        <section class="py-20 sm:py-28 bg-lynx-cream border-b border-lynx-border">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+                
+                <h2 class="font-serif-heading text-4xl sm:text-5xl text-lynx-dark font-normal tracking-tight">
+                    Eyes on Opportunity.<br/>
+                    <span class="italic font-light">Feet in Newfoundland.</span>
+                </h2>
+                
+                <p class="text-base text-lynx-muted max-w-xl mx-auto font-normal">
+                    Learn more about Lynx Resources Corp. and the exploration potential of the Turner’s Ridge Property.
+                </p>
+
+                <div class="pt-4 flex flex-wrap items-center justify-center gap-4">
+                    <a href="#property-feature" class="inline-flex items-center justify-center px-6 py-3.5 border border-lynx-dark text-xs font-semibold tracking-widest text-lynx-cream bg-lynx-dark hover:bg-lynx-accent hover:border-lynx-accent transition-all duration-200 shadow-sm">
+                        Explore Turner’s Ridge <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                    </a>
+                    <a href="#contact" class="inline-flex items-center justify-center px-6 py-3.5 border border-lynx-dark text-xs font-semibold tracking-widest text-lynx-dark bg-white hover:bg-lynx-cream transition-all duration-200">
+                        Contact Lynx
+                    </a>
+                </div>
+
+                <div class="pt-4">
+                    <button onclick="openInvestorModal()" class="text-xs font-semibold tracking-wider text-lynx-accent hover:text-lynx-dark underline underline-offset-4">
+                        Investor Information & Presentation →
+                    </button>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- 13 — FOOTER -->
+    <footer id="contact" class="bg-lynx-dark text-lynx-cream pt-16 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-14 border-b border-stone-700">
+                
+                <!-- Col 1: Brand Info -->
+                <div class="md:col-span-4 space-y-4">
+                    <div class="font-serif-heading text-2xl font-bold tracking-tight text-white">
+                        LYNX RESOURCES CORP.
+                    </div>
+                    <p class="text-xs text-stone-300 leading-relaxed font-normal max-w-sm">
+                        Focused on mineral exploration opportunities in Newfoundland and Labrador.
+                    </p>
+                    <div class="pt-2 text-xs text-stone-400">
+                        <span class="block">Property: Turner’s Ridge (225 ha)</span>
+                        <span class="block">Jurisdiction: Western Newfoundland, Canada</span>
+                    </div>
+                </div>
+
+                <!-- Col 2: Navigation Links -->
+                <div class="md:col-span-3 space-y-3">
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-lynx-cream">Explore</h4>
+                    <ul class="space-y-2 text-xs text-stone-300">
+                        <li><a href="#property" class="hover:text-white transition-colors">Property</a></li>
+                        <li><a href="#about" class="hover:text-white transition-colors">About</a></li>
+                        <li><a href="#geology" class="hover:text-white transition-colors">Geology</a></li>
+                        <li><a href="#team" class="hover:text-white transition-colors">Team</a></li>
+                        <li><a href="#news" class="hover:text-white transition-colors">News & Updates</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Corporate Disclosures -->
+                <div class="md:col-span-2 space-y-3">
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-lynx-cream">Corporate</h4>
+                    <ul class="space-y-2 text-xs text-stone-300">
+                        <li><button onclick="openModal('Privacy Policy', 'Lynx Resources Corp. values your privacy. Personal contact details submitted via our investor inquiries are used solely to communicate company updates and will never be shared with third parties.')" class="hover:text-white transition-colors text-left">Privacy Policy</button></li>
+                        <li><button onclick="openModal('Terms of Use', 'Website content is provided for informational purposes only. Information contained herein does not constitute an offer to sell or solicitation of an offer to buy securities in any jurisdiction.')" class="hover:text-white transition-colors text-left">Terms of Use</button></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Contact Details -->
+                <div class="md:col-span-3 space-y-3">
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-lynx-cream">Contact</h4>
+                    <div class="text-xs text-stone-300 space-y-2 font-light">
+                        <p class="leading-relaxed">
+                            1194 Bloor Street West, Second Floor<br/>
+                            Toronto, Ontario M6H 1N2
+                        </p>
+                        <p class="flex items-center">
+                            <i data-lucide="phone" class="w-3.5 h-3.5 mr-2 text-lynx-cream"></i>
+                            <a href="tel:6473687789" class="hover:text-white transition-colors">(647) 368-7789</a>
+                        </p>
+                        <p class="flex items-center">
+                            <i data-lucide="mail" class="w-3.5 h-3.5 mr-2 text-lynx-cream"></i>
+                            <a href="mailto:kevin@resurgentcapital.ca" class="hover:text-white transition-colors">kevin@resurgentcapital.ca</a>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Mandatory Compliance Disclaimer Note -->
+            <div class="pt-8 pb-4 border-b border-stone-800 text-[11px] text-stone-400 leading-relaxed font-light">
+                <p>
+                    <strong>Early-Stage Exploration Disclaimer:</strong> The Turner’s Ridge Property is an early-stage mineral exploration project. The Property does not currently host or contain a mineral resource or mineral reserve estimate under National Instrument 43-101 (NI 43-101) standards. Historical and 2023 exploration results are presented for geological context and further technical evaluation is required.
+                </p>
+            </div>
+
+            <!-- Copyright -->
+            <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-stone-400">
+                <div>
+                    &copy; <span id="current-year">2026</span> Lynx Resources Corp. All rights reserved.
+                </div>
+                <div class="mt-2 sm:mt-0 text-[11px]">
+                    Canadian Resource Exploration • TSX-V / CSE Venture Profile
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- GENERAL PURPOSE MODAL OVERLAY -->
+    <div id="general-modal" class="fixed inset-0 z-50 hidden bg-lynx-dark/75 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white border border-lynx-border max-w-lg w-full p-6 sm:p-8 shadow-2xl relative">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-lynx-dark hover:text-lynx-accent p-1">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <h3 id="modal-title" class="font-serif-heading text-2xl text-lynx-dark font-medium mb-1"></h3>
+            <p id="modal-subtitle" class="text-xs font-semibold uppercase text-lynx-accent mb-4 tracking-wider"></p>
+            <div id="modal-body" class="text-xs sm:text-sm text-lynx-muted leading-relaxed mb-6 space-y-3"></div>
+            <div class="flex justify-end">
+                <button onclick="closeModal()" class="px-5 py-2.5 bg-lynx-dark text-lynx-cream text-xs font-semibold tracking-wider hover:bg-lynx-accent transition-all">
+                    Close Window
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- INVESTOR INQUIRY MODAL -->
+    <div id="investor-modal" class="fixed inset-0 z-50 hidden bg-lynx-dark/75 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white border border-lynx-border max-w-md w-full p-6 sm:p-8 shadow-2xl relative">
+            <button onclick="closeInvestorModal()" class="absolute top-4 right-4 text-lynx-dark hover:text-lynx-accent p-1">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <span class="text-[10px] font-bold tracking-widest uppercase text-lynx-accent">INVESTOR RELATIONS</span>
+            <h3 class="font-serif-heading text-2xl text-lynx-dark font-medium mb-2">Investor Information Request</h3>
+            <p class="text-xs text-lynx-muted mb-6">
+                Request project presentation decks, NI 43-101 technical updates, or schedule a direct management call.
+            </p>
+            <form id="investor-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-lynx-dark mb-1">Full Name</label>
+                    <input type="text" required placeholder="John Doe" class="w-full px-3 py-2 border border-lynx-border text-xs focus:outline-none focus:border-lynx-dark bg-lynx-lightBg">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-lynx-dark mb-1">Email Address</label>
+                    <input type="email" required placeholder="investor@example.com" class="w-full px-3 py-2 border border-lynx-border text-xs focus:outline-none focus:border-lynx-dark bg-lynx-lightBg">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-lynx-dark mb-1">Inquiry Type</label>
+                    <select class="w-full px-3 py-2 border border-lynx-border text-xs focus:outline-none focus:border-lynx-dark bg-lynx-lightBg">
+                        <option>Investor Deck & Factsheet</option>
+                        <option>Technical Property Data</option>
+                        <option>Management Meeting Request</option>
+                    </select>
+                </div>
+                <div class="pt-2">
+                    <button type="submit" class="w-full py-3 bg-lynx-dark text-lynx-cream text-xs font-semibold tracking-widest uppercase hover:bg-lynx-accent transition-all">
+                        Submit Request →
+                    </button>
+                </div>
+            </form>
+            <div id="form-success" class="hidden text-center py-6 space-y-2">
+                <div class="w-10 h-10 bg-green-100 text-green-800 rounded-full flex items-center justify-center mx-auto">
+                    <i data-lucide="check" class="w-5 h-5"></i>
+                </div>
+                <h4 class="font-serif-heading text-lg font-medium text-lynx-dark">Inquiry Sent Successfully</h4>
+                <p class="text-xs text-lynx-muted">Our corporate team will be in touch with you shortly.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- LIGHTBOX MODAL FOR GALLERY -->
+    <div id="lightbox-modal" class="fixed inset-0 z-50 hidden bg-lynx-dark/90 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="max-w-4xl w-full bg-white border border-lynx-border overflow-hidden relative shadow-2xl">
+            <button onclick="closeLightbox()" class="absolute top-4 right-4 z-10 bg-lynx-dark text-white p-2 hover:bg-lynx-accent">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <div class="bg-black flex items-center justify-center max-h-[70vh]">
+                <img id="lightbox-img" src="" alt="Property View" class="max-h-[70vh] w-auto object-contain">
+            </div>
+            <div class="p-6 bg-white border-t border-lynx-border">
+                <h3 id="lightbox-title" class="font-serif-heading text-xl text-lynx-dark font-medium"></h3>
+                <p id="lightbox-desc" class="text-xs text-lynx-muted mt-1"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+        });
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const openIcon = document.getElementById('menu-icon-open');
+            const closeIcon = document.getElementById('menu-icon-close');
+            
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                openIcon.classList.add('hidden');
+                closeIcon.classList.remove('hidden');
+            } else {
+                menu.classList.add('hidden');
+                openIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            }
+        }
+
+        // Smooth scroll helper
+        function scrollToSection(id) {
+            const el = document.getElementById(id);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Modal triggers
+        function openModal(title, body, subtitle = '') {
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-subtitle').textContent = subtitle;
+            document.getElementById('modal-body').innerHTML = body;
+            document.getElementById('general-modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('general-modal').classList.add('hidden');
+        }
+
+        function openInvestorModal() {
+            document.getElementById('investor-modal').classList.remove('hidden');
+            document.getElementById('investor-form').classList.remove('hidden');
+            document.getElementById('form-success').classList.add('hidden');
+        }
+
+        function closeInvestorModal() {
+            document.getElementById('investor-modal').classList.add('hidden');
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            document.getElementById('investor-form').classList.add('hidden');
+            document.getElementById('form-success').classList.remove('hidden');
+        }
+
+        function openTeamBio(name, title, bio) {
+            openModal(name, bio, title);
+        }
+
+        function openNewsDetail(title, date, summary) {
+            openModal(title, summary, `Date: ${date}`);
+        }
+
+        function openNewsletterModal() {
+            openInvestorModal();
+        }
+
+        // Gallery Filter
+        function filterGallery(category) {
+            const items = document.querySelectorAll('.gallery-item');
+            const tabs = document.querySelectorAll('.gallery-tab');
+
+            tabs.forEach(tab => {
+                tab.classList.remove('bg-lynx-dark', 'text-lynx-cream');
+                tab.classList.add('bg-white', 'text-lynx-dark');
+            });
+
+            event.target.classList.remove('bg-white', 'text-lynx-dark');
+            event.target.classList.add('bg-lynx-dark', 'text-lynx-cream');
+
+            items.forEach(item => {
+                if (category === 'all' || item.classList.contains(category)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Lightbox
+        function openLightbox(title, desc, src) {
+            document.getElementById('lightbox-title').textContent = title;
+            document.getElementById('lightbox-desc').textContent = desc;
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox-modal').classList.remove('hidden');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox-modal').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
